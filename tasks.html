@@ -7,15 +7,17 @@
 	media="screen" />
 	<script src="scripts/jquery-3.2.1.js"></script>
 	<script src="scripts/jquery-tmpl.js"></script>
+   <script src="scripts/jquery-serialization.js"></script>
+   <script src="scripts/tasks-controller.js"></script>
 
 </head>
 <body>
 	<header>
 		<span>Task list</span>
 	</header>
-	<main>
+	<main id="taskPage">
 		<section id="taskCreation" class="not">
-			<form>
+			<form id="taskForm">
 				<div>
 					<label>Task</label> <input type="text" required="required"
 						name="task" class="large" placeholder="Breakfast at Tiffanys" />
@@ -31,7 +33,8 @@
 					</select>
 				</div>
 				<nav>
-					<a href="#" id="saveTask">Save task</a> <a href="#">Clear task</a>
+					<a href="#" id="saveTask">Save task</a> 
+               <a href="#" id="clearTask">Clear task</a>
 				</nav>
 			</form>
 		</section>
@@ -100,47 +103,8 @@
 
 <script>
 	$(document).ready(function() {
-		$('[required="required"]').prev('label').append('<span> *</span>').children( 'span').addClass('required');
-		$('tbody tr:even').addClass('even');
-		$('#btnAddTask').click(function(evt) {
-			evt.preventDefault();
-			$('#taskCreation').removeClass('not');
-		});
-		$('tbody tr').click(function(evt) {
-			$(evt.target).closest('td').siblings().addBack().toggleClass('rowHighlight');
-		});
-		$('#tblTasks tbody').on('click', '.deleteRow', function(evt) {
-			evt.preventDefault();
-			$(evt.target).parents('tr').remove();
-		});
-      $('#saveTask').click(function(evt) {
-         evt.preventDefault();
-         var task = $('form').toObject();
-         $('#taskRow').tmpl(task).appendTo($('#tblTasks tbody'));
-      });
+      tasksController.init($('#taskPage'));
 	});
-	(function($) {
-    $.fn.extend({
-        toObject: function() {
-            var result = {}
-			$.each(this.serializeArray(), function(i, v) {
-				result[v.name] = v.value;
-			});
-			return result;
-		},
-		fromObject: function(obj) {
-			$.each(this.find(':input'), function(i,v) {
-				var name = $(v).attr('name');
-				if (obj[name]) {
-					$(v).val(obj[name]);
-				}
-				else {
-					$(v).val('');
-				}
-			});
-		}
-    });
-})(jQuery);
 </script>
 
 <script id="taskRow" type="text/x-jQuery-tmpl">
