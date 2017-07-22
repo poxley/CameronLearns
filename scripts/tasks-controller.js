@@ -20,11 +20,10 @@ tasksController = function() {
             });
             $(taskPage).find('#saveTask').click(function(evt) {
                evt.preventDefault();
-//               if ($(taskPage).find('form').valid()) {
+               if ($(taskPage).find('form').valid()) {
                   var task = $('form').toObject();
-//                  var task = $(taskPage).find('task').val();
                   $('#taskRow').tmpl(task).appendTo($(taskPage).find('#tblTasks tbody'));
-//               }
+               }
             });
             initialised = true;
          }

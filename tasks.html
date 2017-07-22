@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<title>Task list</title>
@@ -7,10 +8,11 @@
 	media="screen" />
 	<script src="scripts/jquery-3.2.1.js"></script>
 	<script src="scripts/jquery-tmpl.js"></script>
+   <script src="scripts/jquery.validate.js"></script>
    <script src="scripts/jquery-serialization.js"></script>
    <script src="scripts/tasks-controller.js"></script>
-
 </head>
+
 <body>
 	<header>
 		<span>Task list</span>
@@ -19,8 +21,7 @@
 		<section id="taskCreation" class="not">
 			<form id="taskForm">
 				<div>
-					<label>Task</label> <input type="text" required="required"
-						name="task" class="large" placeholder="Breakfast at Tiffanys" />
+					<label>Task</label> <input type="text" required="required" maxlength="200" name="task" class="large" placeholder="Breakfast at Tiffanys" />
 				</div>
 				<div>
 					<label>Required by</label> <input type="date" required="required"
@@ -100,31 +101,6 @@
 	</main>
 	<footer>You have 3 tasks</footer>
 </body>
-
-<!--
-<script>
-$(document).ready(function() {
-	$('[required="required"]').prev('label').append('<span>*</span>').children('span').addClass('required');
-   $('tbody tr:even').addClass('even');
-   $('#btnAddTask').click(function(evt) {
-      evt.preventDefault();
-      $('#taskCreation').removeClass('not');
-   });
-   $('[tbody tr').click(function(evet) {
-      $(evt.target).closest('td').siblings().addBack().taggleClass('rwoHighlight');
-   });
-   $('#tblTasks tbody').on('click', '.deleteRow', function(evt) {
-      evt.preventDefault();
-      $(evt.target).parents('tr').remove();
-   });
-   $('#saveTask').click(function(evt) {
-      evt.preventDefault();
-      var task = $('form').toObject();
-      $('#taskRow').tmpl(task).appendTo($('#tblTasks tbody'));
-   });
-});
-</script>
--->
 
 <script>
    $(document).ready(function() {
