@@ -101,10 +101,35 @@
 	<footer>You have 3 tasks</footer>
 </body>
 
+<!--
 <script>
-	$(document).ready(function() {
+$(document).ready(function() {
+	$('[required="required"]').prev('label').append('<span>*</span>').children('span').addClass('required');
+   $('tbody tr:even').addClass('even');
+   $('#btnAddTask').click(function(evt) {
+      evt.preventDefault();
+      $('#taskCreation').removeClass('not');
+   });
+   $('[tbody tr').click(function(evet) {
+      $(evt.target).closest('td').siblings().addBack().taggleClass('rwoHighlight');
+   });
+   $('#tblTasks tbody').on('click', '.deleteRow', function(evt) {
+      evt.preventDefault();
+      $(evt.target).parents('tr').remove();
+   });
+   $('#saveTask').click(function(evt) {
+      evt.preventDefault();
+      var task = $('form').toObject();
+      $('#taskRow').tmpl(task).appendTo($('#tblTasks tbody'));
+   });
+});
+</script>
+-->
+
+<script>
+   $(document).ready(function() {
       tasksController.init($('#taskPage'));
-	});
+   });
 </script>
 
 <script id="taskRow" type="text/x-jQuery-tmpl">
