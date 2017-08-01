@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>Task list</title>
-	<link rel="stylesheet" type="text/css" href="styles/tasks.css"
-	media="screen" />
-	<script src="scripts/jquery-3.2.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles/tasks.css" media="screen" />
+	<!-- script src="scripts/jquery-2.0.3.js"></script -->
+   <script src="scripts/jquery-3.2.1.js"></script>
 	<script src="scripts/jquery-tmpl.js"></script>
    <script src="scripts/jquery.validate.js"></script>
    <script src="scripts/jquery-serialization.js"></script>
@@ -105,13 +105,14 @@
 <script>
    $(document).ready(function() {
       tasksController.init($('#taskPage'));
+      tasksController.loadTasks();
    });
 </script>
 
 <script id="taskRow" type="text/x-jQuery-tmpl">
 <tr>
 	<td>${task}</td>
-	<td><time datetime="$[requiredBy}"> ${requiredBy}</time></td>
+	<td><time datetime="${requiredBy}">${requiredBy}</time></td>
 	<td>${category}</td>
 	<td>
 		<nav>
